@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+// Actions
+import { saveJobs } from '../../actions/jenkins';
 
 // Components
 import { CheckCircle } from 'react-feather';
@@ -20,7 +24,6 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      jobs: [],
       loading: true,
     }
   }
@@ -30,7 +33,8 @@ class Dashboard extends React.Component {
       if (data.error) {
         this.setState({loading: false});
       } else {
-        this.setState({loading: false, jobs: data.body.jobs});
+        this.props.dispatch(saveJobs(data.body.jobs));
+        this.setState({loading: false});
       }
     });
   }
@@ -44,7 +48,7 @@ class Dashboard extends React.Component {
           Correct
         </Title>
         <div className="Dashboard__JobList">
-          { this.state.jobs.map((el) => {
+          { this.props.jobs.map((el) => {
             return <JobCard key={el.name} className="Dashboard__Job" { ...el }/>;
           })}
         </div>
@@ -53,4 +57,8 @@ class Dashboard extends React.Component {
   };
 }
 
-export default Dashboard;
+export default connect((state) => {
+  return {
+    jobs: state.jenkins.jobs,
+  }
+})(Dashboard);
