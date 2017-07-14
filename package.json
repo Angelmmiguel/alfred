@@ -1,0 +1,39 @@
+{
+  "name": "alfred",
+  "version": "1.0.0",
+  "description": "A simple Jenkins Dashboard. Visualize and categorize all your Jenkins jobs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --inspect=0.0.0.0:5858 index.js",
+    "lint": "eslint ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angelmmiguel/alfred.git"
+  },
+  "keywords": [
+    "Jenkins",
+    "dashboard",
+    "visualization"
+  ],
+  "author": "Angel M Miguel <angel@laux.es>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Angelmmiguel/alfred/issues"
+  },
+  "homepage": "https://github.com/Angelmmiguel/alfred#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "nedb": "^1.8.0",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.11.0"
+  }
+}

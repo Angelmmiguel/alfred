@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  nginx:
+    image: bitnami/nginx:1.12.0-r5
+    volumes:
+      - ./dev/nginx:/bitnami/nginx/conf/vhosts
+    depends_on:
+      - backend
+      - client
+    environment:
+      - VIRTUAL_HOST=alfred.docker
+      - VIRTUAL_PORT=8080
+    ports:
+      - 8080:8080
+  backend:
+    image: angelrb/alfred
+    command: yarn dev
+    entrypoint: /scripts/entrypoint.sh
+    volumes:
+      - ./:/app
+      - ./scripts:/scripts
+      - /app/node_modules
+    ports:
+      - 5858:5858
+    environment:
+      - NODE_ENV=development
+      - JENKINS_URL=${JENKINS_URL}
+      - JENKINS_USER=${JENKINS_USER}
+      - JENKINS_TOKEN=${JENKINS_TOKEN}
+  client:
+    image: angelrb/alfred
+    command: yarn start
+    entrypoint: /scripts/entrypoint.sh
+    volumes:
+      - ./client:/app
+      - ./scripts:/scripts
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
