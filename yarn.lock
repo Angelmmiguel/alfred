@@ -1257,6 +1257,12 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
+jenkins-api@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/jenkins-api/-/jenkins-api-0.2.8.tgz#174e154151d16a9a5fda2f4fa479f2b4bb2b020b"
+  dependencies:
+    request ">= 2.2.9"
+
 js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -1921,7 +1927,7 @@ repeating@^1.1.2:
   dependencies:
     is-finite "^1.0.0"
 
-request@^2.81.0:
+"request@>= 2.2.9", request@^2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:
