@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Styles
 import './index.css';
-import App from './App';
+
+// Containers
+import Dashboard from './containers/Dashboard';
+
+// Service Worker for caching
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Dashboard />,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

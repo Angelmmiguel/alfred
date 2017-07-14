@@ -130,7 +130,7 @@ app.get('/api/status', (req, res) => {
 
 // Get all the jobs
 app.get('/api/jobs', (req, res) => {
-  db.find({}, (err, docs) => {
+  db.find({}).sort({name: 1}).exec((err, docs) => {
     if (err) {
       res.json({
         status: false,
