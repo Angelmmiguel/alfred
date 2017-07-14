@@ -49,8 +49,9 @@ const token = process.env.JENKINS_TOKEN;
 const jenkins = jenkinsApi.init(`${url[0]}//${user}:${token}@${url[1]}`);
 
 const initializeJob = (job) => {
-  job.category = 'unknown';
+  job.category = 'others';
   job.priority = 'low';
+  job.project = 'others';
   job.sla = '1w';
   return job;
 };

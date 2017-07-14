@@ -1,0 +1,31 @@
+@import '../../shared';
+
+.Navigation {
+  &:before {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: linear-gradient(to right, #56ccf2, #2f80ed); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+  svg {
+    vertical-align: text-bottom;
+  }
+
+  &__Bar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__Logo,
+  &__Filters,
+  &__Nav {
+    padding: 1.5em 0;
+    color: $brand;
+
+    a {
+      color: $brand;
+    }
+  }
+}

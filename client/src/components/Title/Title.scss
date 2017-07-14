@@ -1,0 +1,16 @@
+@import '../../shared';
+
+.Title {
+  text-transform: uppercase;
+  font-size: .9em;
+  color: $brand;
+  margin: 1.5em 0 1em;
+
+  svg {
+    display: inline-block;
+    margin-right: .5em;
+    height: 16px;
+    width: 16px;
+    vertical-align: text-bottom;
+  }
+}
