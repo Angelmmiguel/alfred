@@ -15,13 +15,15 @@ class Navigation extends React.PureComponent {
       <Content>
         <div className="Navigation__Bar">
           <div className="Navigation__Logo">
-            <Layers /> Alfred
+            <Link routeName='index'>
+              <Layers /> Alfred
+            </Link>
           </div>
           <div className="Navigation__Filters">
 
           </div>
           <nav className="Navigation__Nav">
-            <Link routeName='settings'>
+            <Link routeName='configuration'>
               <Settings />
             </Link>
           </nav>

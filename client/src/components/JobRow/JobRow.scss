@@ -1,0 +1,18 @@
+@import '../../shared';
+
+.JobRow {
+  margin-bottom: 1.5em;
+  color: $text-light;
+
+  td {
+    padding: .5em 0;
+  }
+
+  svg {
+    vertical-align: text-bottom;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: .5em;
+  }
+}

@@ -1,0 +1,9 @@
+.Configuration {
+  &__JobTable {
+    width: 100%;
+
+    tr td:last-child {
+      text-align: right;
+    }
+  }
+}

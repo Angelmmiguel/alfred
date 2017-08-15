@@ -22,6 +22,21 @@
   &__Status {
     height: 5px;
     width: 100%;
-    background: linear-gradient(to right, #75d40d, #a0f164); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    &-correct {
+      background: linear-gradient(to right, #75d40d, #a0f164); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    &-failed {
+      background: linear-gradient(to right, #cb2d3e, #ef473a);
+    }
+
+    &-disabled {
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+    }
+
+    &-inProgress {
+
+    }
   }
 }

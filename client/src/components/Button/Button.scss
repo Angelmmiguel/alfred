@@ -1,0 +1,21 @@
+@import '../../shared';
+
+.Button {
+  text-transform: uppercase;
+  font-size: .8em;
+  color: $text-white;
+  background-color: $brand;
+  border-radius: 10px;
+  border: none;
+  padding: .5em 1em;
+  cursor: pointer;
+
+  > svg {
+    display: inline-block;
+    margin-right: .5em;
+    color: $text-white;
+    height: 16px;
+    width: 16px;
+    vertical-align: text-bottom;
+  }
+}

@@ -1,0 +1,11 @@
+@import '../../shared';
+
+.JobList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__Job {
+    width: 32%;
+  }
+}

@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
 import { saveJobs } from '../../actions/jenkins';
 
 // Components
-import { CheckCircle } from 'react-feather';
+import { CheckCircle, AlertCircle, Slash } from 'react-feather';
 import Navigation from '../../components/Navigation';
-import JobCard from '../../components/JobCard';
+import JobList from '../../components/JobList';
 import Title from '../../components/Title';
 import Content from '../../components/Content';
 
@@ -17,6 +16,7 @@ import './Dashboard.css';
 
 // Utils
 import fetch from '../../shared/fetch';
+import statusByColor from '../../shared/status';
 
 class Dashboard extends React.Component {
 
@@ -39,19 +39,23 @@ class Dashboard extends React.Component {
     });
   }
 
+  jobsByStatus(status) {
+    return this.props.jobs.filter((el) => {
+      let jobStatus = statusByColor(el.color).status;
+      return jobStatus === status;
+    })
+  }
+
   render() {
     return <section className="Dashboard">
       <Navigation />
       <Content>
-        <Title>
-          <CheckCircle />
-          Correct
-        </Title>
-        <div className="Dashboard__JobList">
-          { this.props.jobs.map((el) => {
-            return <JobCard key={el.name} className="Dashboard__Job" { ...el }/>;
-          })}
-        </div>
+        <Title><AlertCircle /> Failed</Title>
+        <JobList jobs={ this.jobsByStatus('failed') } />
+        <Title><CheckCircle /> Correct </Title>
+        <JobList jobs={ this.jobsByStatus('correct') } />
+        <Title><Slash /> Disabled </Title>
+        <JobList jobs={ this.jobsByStatus('disabled') } />
       </Content>
     </section>;
   };

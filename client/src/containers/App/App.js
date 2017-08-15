@@ -4,12 +4,15 @@ import { routeNodeSelector } from 'redux-router5';
 
 // Containers
 import Dashboard from '../Dashboard';
+import Configuration from '../Configuration';
+import ConfigurationJob from '../ConfigurationJob';
 import NotFound from '../../components/NotFound';
 
 // Containers for routes
 const containers = {
   'index': Dashboard,
-  'settings': Dashboard
+  'configuration': Configuration,
+  'configurationJob': ConfigurationJob,
 };
 
 // Basic App routing
