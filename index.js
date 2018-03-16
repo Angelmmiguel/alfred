@@ -8,6 +8,9 @@ const io = require('socket.io')(http);
 // Jenkins Connection
 const jenkinsApi = require('jenkins-api');
 
+// App
+const initJobs = require('./app/jobs');
+
 // =====================
 // Database
 // =====================
@@ -47,60 +50,15 @@ const user = process.env.JENKINS_USER;
 const token = process.env.JENKINS_TOKEN;
 
 const jenkins = jenkinsApi.init(`${url[0]}//${user}:${token}@${url[1]}`);
+const jobs = initJobs(jenkins, db);
 
-const initializeJob = (job) => {
-  job.category = 'others';
-  job.priority = 'low';
-  job.project = 'others';
-  job.sla = '1w';
-  return job;
-};
+// Init
+jobs.setup();
 
-console.log('Initializing Jenkins data');
-
-jenkins.all_jobs(function(err, data) {
-  if (err) {
-    console.log(`There was an error contacting your Jenkins instance`);
-    process.exit(1);
-  }
-
-  // Insert them in the DB
-  db.count({}, (err, count) => {
-    if (err) {
-      console.error('Error counting the number of elements');
-    }
-
-    if (count === 0) {
-      console.log('Creating the database...');
-      let parsedData = data.map(initializeJob);
-      db.insert(parsedData, (err, docs) => {
-        if (err) {
-          console.error('Error inserting the documents');
-        }
-        console.log(`Added ${docs.length} Jenkins Jobs to the database`);
-      });
-    } else {
-      console.log('Updating the database...');
-      data.forEach(function(job) {
-        db.find({name: job.name}, (err, docs) => {
-          if (!err && !docs) {
-            job = initializeJob(job);
-            db.insert(job, (err, docs) => {
-              if (err) {
-                console.error('Error inserting the documents');
-              }
-              console.log(`Added a new job: ${job.name}`);
-            });
-          } else {
-            // Update the elements
-            db.update({name: job.name}, {$set: {color: job.color}});
-          }
-        });
-      }, this);
-    }
-    console.log('Done');
-  });
-});
+// Set an interval to update the jobs
+const jobInterval = setInterval(() => {
+  jobs.update();
+}, 60 * 1000);
 
 // =====================
 // Initialization
@@ -153,4 +111,9 @@ app.get('*', (req, res) => {
 // Create the server
 http.listen(port, () => {
   console.log('Our app is running on http://localhost:' + port);
+});
+
+// Clean the interval before exit
+process.on('SIGINT', () => {
+  clearInterval(jobInterval);
 });
