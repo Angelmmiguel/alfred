@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
 
-// Styles
-import './index.css';
-
 // Containers
 import App from './containers/App';
 
