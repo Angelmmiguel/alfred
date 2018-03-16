@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Components
+import Label from '../Label';
+
 // Styles
 import './Input.css';
 
@@ -26,9 +29,7 @@ class Input extends React.PureComponent {
     if (this.props.label === undefined) {
       return '';
     } else {
-      return <label for={ this.props.id }>
-        { this.props.label }
-      </label>;
+      return <Label id={ this.props.id }>{ this.props.label }</Label>;
     }
   }
 

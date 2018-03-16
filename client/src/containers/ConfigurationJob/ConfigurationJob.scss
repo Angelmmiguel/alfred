@@ -1,3 +1,19 @@
 .ConfigurationJob {
 
+  &__Form {
+    max-width: 500px;
+  }
+
+  &__Slider {
+    margin: 1.5em 0 2.5em;
+
+    label {
+      margin-bottom: 1em;
+    }
+
+    &__Wrapper {
+      width: 95%;
+      margin: 0 auto;
+    }
+  }
 }
