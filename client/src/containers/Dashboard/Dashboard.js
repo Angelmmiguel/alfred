@@ -23,6 +23,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
+    this.jenkinsUrl = undefined;
     this.state = {
       loading: true,
     }
@@ -37,6 +38,9 @@ class Dashboard extends React.Component {
         this.setState({loading: false});
       }
     });
+    fetch('jenkins').then((data) => {
+      this.jenkinsUrl = data.body.url;
+    });
   }
 
   jobsByStatus(status) {
@@ -48,14 +52,14 @@ class Dashboard extends React.Component {
 
   render() {
     return <section className="Dashboard">
-      <Navigation />
+      <Navigation jenkinsUrl={ this.jenkinsUrl } />
       <Content>
         <Title><AlertCircle /> Failed</Title>
-        <JobList jobs={ this.jobsByStatus('failed') } />
+        <JobList jenkinsUrl={ this.jenkinsUrl } jobs={ this.jobsByStatus('failed') } />
         <Title><CheckCircle /> Correct </Title>
-        <JobList jobs={ this.jobsByStatus('correct') } />
+        <JobList jenkinsUrl={ this.jenkinsUrl } jobs={ this.jobsByStatus('correct') } />
         <Title><Slash /> Disabled </Title>
-        <JobList jobs={ this.jobsByStatus('disabled') } />
+        <JobList jenkinsUrl={ this.jenkinsUrl } jobs={ this.jobsByStatus('disabled') } />
       </Content>
     </section>;
   };

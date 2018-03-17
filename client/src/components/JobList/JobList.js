@@ -18,7 +18,10 @@ class JobList extends React.PureComponent {
 
     return <div className="JobList">
       { this.props.jobs.map((el) => {
-        return <JobCard key={el.name} className="JobList__Job" { ...el }/>;
+        return <JobCard jenkinsUrl={this.props.jenkinsUrl}
+                        key={el.name}
+                        className="JobList__Job"
+                        { ...el }/>;
       })}
       { lastElement }
     </div>;
