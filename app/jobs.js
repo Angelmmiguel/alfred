@@ -35,7 +35,7 @@ const setup = (jenkins, db) => {
 
       jenkins.all_jobs((err, data) => {
         if (err) {
-          console.error(`There was an error contacting your Jenkins instance`);
+          dumpRequesError(data)
           return;
         }
 
@@ -61,7 +61,7 @@ const update = (jenkins, db) => {
   console.log('Updating jobs...');
   jenkins.all_jobs((err, data) => {
     if (err) {
-      console.error(`There was an error contacting your Jenkins instance`);
+      dumpRequesError(data)
       return;
     }
 
@@ -98,5 +98,24 @@ const jobs = (jenkins, db) => {
     update: () => update(jenkins, db),
   };
 };
+
+function dumpRequesError(r) {
+  console.error(`There was an error contacting your Jenkins instance:`);
+  if (r == null) {
+    console.error(`No request data: Network error. Check your JENKINS_URL setting.`)
+    return
+  }
+  uri = r.request.uri
+  url = `${uri.protocol}//${filterAuth(uri.auth)}${uri.hostname}${uri.path}`
+  console.error(`${url} => ${r.statusCode} ${r.statusMessage}`)
+}
+
+function filterAuth(auth) {
+  if (auth == '') {
+    return ''
+  }
+  parts = auth.split(":", 1)
+  return `${parts[0]}:**hidden*secret**@`
+}
 
 module.exports = jobs;
