@@ -99,7 +99,7 @@ const jobs = (jenkins, db) => {
   };
 };
 
-function dumpRequesError(r) {
+const dumpRequesError = (r) => {
   console.error(`There was an error contacting your Jenkins instance:`);
   if (r == null) {
     console.error(`No request data: Network error. Check your JENKINS_URL setting.`)
@@ -110,7 +110,7 @@ function dumpRequesError(r) {
   console.error(`${url} => ${r.statusCode} ${r.statusMessage}`)
 }
 
-function filterAuth(auth) {
+const filterAuth = (auth) => {
   if (auth == '') {
     return ''
   }
