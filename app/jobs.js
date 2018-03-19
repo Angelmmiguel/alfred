@@ -102,20 +102,20 @@ const jobs = (jenkins, db) => {
 const dumpRequesError = (r) => {
   console.error(`There was an error contacting your Jenkins instance:`);
   if (r == null) {
-    console.error(`No request data: Network error. Check your JENKINS_URL setting.`)
-    return
+    console.error(`No request data: Network error. Check your JENKINS_URL setting.`);
+    return;
   }
-  uri = r.request.uri
-  url = `${uri.protocol}//${filterAuth(uri.auth)}${uri.hostname}${uri.path}`
-  console.error(`${url} => ${r.statusCode} ${r.statusMessage}`)
+  uri = r.request.uri;
+  url = `${uri.protocol}//${filterAuth(uri.auth)}${uri.hostname}${uri.path}`;
+  console.error(`${url} => ${r.statusCode} ${r.statusMessage}`);
 }
 
 const filterAuth = (auth) => {
   if (auth == '') {
-    return ''
+    return '';
   }
-  parts = auth.split(":", 1)
-  return `${parts[0]}:**hidden*secret**@`
+  parts = auth.split(":", 1);
+  return `${parts[0]}:**hidden*secret**@`;
 }
 
 module.exports = jobs;
