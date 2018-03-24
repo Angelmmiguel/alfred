@@ -25,6 +25,12 @@ const jenkinsReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         jobs: action.jobs,
       });
+    case actionNames.GET_URL:
+      fetch('jenkins').then((data) => {
+        Object.assign({}, state, {
+          url: data.body.url,
+        });
+      });
     default:
       return state;
   }

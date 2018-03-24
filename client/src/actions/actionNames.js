@@ -4,6 +4,7 @@ const prefix = 'alfred';
 // Define the actions for the application
 const actions = [
   'SAVE_JOBS',
+  'GET_URL'
 ]
 
 // Export them with a prefix to isolate our app in Redux

@@ -23,7 +23,6 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.jenkinsUrl = undefined;
     this.state = {
       loading: true,
     }
@@ -37,9 +36,6 @@ class Dashboard extends React.Component {
         this.props.dispatch(saveJobs(data.body.jobs));
         this.setState({loading: false});
       }
-    });
-    fetch('jenkins').then((data) => {
-      this.jenkinsUrl = data.body.url;
     });
   }
 
@@ -55,11 +51,11 @@ class Dashboard extends React.Component {
       <Navigation jenkinsUrl={ this.jenkinsUrl } />
       <Content>
         <Title><AlertCircle /> Failed</Title>
-        <JobList jenkinsUrl={ this.jenkinsUrl } jobs={ this.jobsByStatus('failed') } />
+        <JobList jobs={ this.jobsByStatus('failed') } />
         <Title><CheckCircle /> Correct </Title>
-        <JobList jenkinsUrl={ this.jenkinsUrl } jobs={ this.jobsByStatus('correct') } />
+        <JobList jobs={ this.jobsByStatus('correct') } />
         <Title><Slash /> Disabled </Title>
-        <JobList jenkinsUrl={ this.jenkinsUrl } jobs={ this.jobsByStatus('disabled') } />
+        <JobList jobs={ this.jobsByStatus('disabled') } />
       </Content>
     </section>;
   };

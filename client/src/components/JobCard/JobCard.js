@@ -17,7 +17,7 @@ class JobCard extends React.PureComponent {
     // CSS classes
     let cssClass = `JobCard ${this.props.className}`;
     let statusClass = `JobCard__Status JobCard__Status-${status.status}`;
-    let jenkinsLink = `${this.props.jenkinsUrl}job/${this.props.name}`;
+    const jenkinsLink = `${this.props.url}job/${this.props.name}`;
 
     if (status.inProgress) {
       statusClass = `${statusClass} JobCard__Status-progress`;
@@ -28,7 +28,7 @@ class JobCard extends React.PureComponent {
         <CategoryIcon category={ this.props.category } />
         { this.props.name }
         <span className="JobCard__Links">
-          <a href={jenkinsLink}>
+          <a href={jenkinsLink} rel="noopener noreferrer" target="_blank">
             <Monitor />
           </a>
         </span>
