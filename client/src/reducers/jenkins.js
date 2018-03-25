@@ -3,14 +3,17 @@ import actionNames from '../actions/actionNames';
 
 // Store the data in the storage
 const STORAGE_KEY = 'current_jobs';
+const JENKINS_URL = 'jenkins_url';
 
 // Initial state
 let initialState = {}
 
 if (window.localStorage !== undefined) {
   initialState.jobs = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');
+  initialState.url = window.localStorage.getItem(JENKINS_URL) || '';
 } else {
   initialState.jobs = [];
+  initialState.url = '';
 }
 
 // Reducer
@@ -25,13 +28,17 @@ const jenkinsReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         jobs: action.jobs,
       });
-    case actionNames.GET_URL:
-      fetch('jenkins').then((data) => {
-        Object.assign({}, state, {
-          url: data.body.url,
-        });
+    case actionNames.SAVE_URL:
+      console.log(action.url);
+      // Storage in localStorage
+      if (window.localStorage !== undefined) {
+        window.localStorage.setItem(JENKINS_URL, action.url);
+      }
+      // Update the state
+      return Object.assign({}, state, {
+        url: action.url,
       });
-    default:
+     default:
       return state;
   }
 }

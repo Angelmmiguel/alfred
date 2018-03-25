@@ -16,8 +16,8 @@ class Navigation extends React.PureComponent {
         <div className="Navigation__Bar">
           <div className="Navigation__Logo">
             <Link routeName='index'><Layers /> Alfred </Link>
-            for <a href={ this.props.jenkinsUrl }>
-              { this.props.jenkinsUrl }
+            for <a href={ this.props.url }>
+              { this.props.url }
             </a>
           </div>
           <div className="Navigation__Filters">

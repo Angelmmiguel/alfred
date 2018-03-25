@@ -28,7 +28,7 @@ class JobCard extends React.PureComponent {
         <CategoryIcon category={ this.props.category } />
         { this.props.name }
         <span className="JobCard__Links">
-          <a href={jenkinsLink} rel="noopener noreferrer" target="_blank">
+          <a href={ jenkinsLink } rel="noopener noreferrer" target="_blank">
             <Monitor />
           </a>
         </span>

@@ -1,9 +1,9 @@
 // Actions for jenkins reducer
 import actionNames from './actionNames';
 
-export const saveJobs = (jobs) => {
+export const saveUrl = (url) => {
   return {
-    type: actionNames.SAVE_JOBS,
-    jobs,
+    type: actionNames.SAVE_URL,
+    url: url,
   }
 }

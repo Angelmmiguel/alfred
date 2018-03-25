@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import { saveJobs } from '../../actions/jenkins';
+import { saveUrl } from '../../actions/jenkinsUrl';
 
 // Components
 import { CheckCircle, AlertCircle, Slash } from 'react-feather';
@@ -37,6 +38,14 @@ class Dashboard extends React.Component {
         this.setState({loading: false});
       }
     });
+    fetch('jenkins').then((data) => {
+      if (data.error) {
+        this.setState({loading: false});
+      } else {
+        this.props.dispatch(saveUrl(data.body.url));
+        this.setState({loading: false});
+      }
+    });
   }
 
   jobsByStatus(status) {
@@ -48,7 +57,7 @@ class Dashboard extends React.Component {
 
   render() {
     return <section className="Dashboard">
-      <Navigation jenkinsUrl={ this.jenkinsUrl } />
+      <Navigation />
       <Content>
         <Title><AlertCircle /> Failed</Title>
         <JobList jobs={ this.jobsByStatus('failed') } />
