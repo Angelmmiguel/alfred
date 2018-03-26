@@ -29,7 +29,6 @@ const jenkinsReducer = (state = initialState, action) => {
         jobs: action.jobs,
       });
     case actionNames.SAVE_URL:
-      console.log(action.url);
       // Storage in localStorage
       if (window.localStorage !== undefined) {
         window.localStorage.setItem(JENKINS_URL, action.url);
