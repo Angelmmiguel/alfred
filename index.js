@@ -87,6 +87,13 @@ app.get('/api/status', (req, res) => {
   });
 });
 
+// Get jenkins url
+app.get('/api/jenkins', (req, res) => {
+  res.json({
+    url: process.env.JENKINS_URL
+  });
+});
+
 // Get all the jobs
 app.get('/api/jobs', (req, res) => {
   db.find({}).sort({name: 1}).exec((err, docs) => {

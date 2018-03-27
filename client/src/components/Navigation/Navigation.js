@@ -15,9 +15,10 @@ class Navigation extends React.PureComponent {
       <Content>
         <div className="Navigation__Bar">
           <div className="Navigation__Logo">
-            <Link routeName='index'>
-              <Layers /> Alfred
-            </Link>
+            <Link routeName='index'><Layers /> Alfred </Link>
+            for <a href={ this.props.url }>
+              { this.props.url }
+            </a>
           </div>
           <div className="Navigation__Filters">
 
